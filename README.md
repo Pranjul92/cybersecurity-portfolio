@@ -4,7 +4,7 @@
 
 ## About Me
 
-Cybersecurity professional with 5+ years of experience in Security Operations, Incident Response, and infrastructure security. This portfolio demonstrates hands-on technical skills through real-world lab implementations.
+Cybersecurity professional with 5+ years of experience spanning security operations, incident response, and security architecture. Skilled in designing and implementing enterprise security solutions, SIEM deployments, and security monitoring infrastructure.
 
 **Target Roles:** Security Analyst | SOC Analyst | Security Engineer  | Security Solutions Architect
 
