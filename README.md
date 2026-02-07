@@ -2,14 +2,14 @@
 
 **Security Operations & Architecture Labs**
 
-## 👨‍💻 About Me
+## About Me
 
 Cybersecurity professional with 5+ years of experience in Security Operations, Incident Response, and infrastructure security. This portfolio demonstrates hands-on technical skills through real-world lab implementations.
 
 **Target Roles:** Security Analyst | SOC Analyst | Security Engineer  | Solutions Architect
 **Location Focus:** Remote (APAC/Hong Kong)
 
-## 🎯 Skills Demonstrated
+## Skills Demonstrated
 
 - SIEM deployment and administration (Splunk)
 - Security monitoring and log analysis
@@ -20,7 +20,7 @@ Cybersecurity professional with 5+ years of experience in Security Operations, I
 - Incident response
 
 
-## 🔬 Lab Projects
+## Lab Projects
 
 ### Lab 1: Enterprise SIEM Deployment ✅ Complete
 **Focus:** Log management, SIEM architecture, security monitoring
@@ -44,7 +44,7 @@ Built a production-grade SIEM environment with centralized log collection from W
 **Focus:** Proactive hunting, IOCs, behavioral analysis
 
 
-## 📫 Contact
+## Contact
 
 **LinkedIn:** https://www.linkedin.com/in/pranjul-nayyar-19168182/
 **Email:** pranjulnayyar@gmail.com
