@@ -6,8 +6,7 @@
 
 Cybersecurity professional with 5+ years of experience in Security Operations, Incident Response, and infrastructure security. This portfolio demonstrates hands-on technical skills through real-world lab implementations.
 
-**Target Roles:** Security Analyst | SOC Analyst | Security Engineer  | Solutions Architect
-**Location Focus:** Remote (APAC/Hong Kong)
+**Target Roles:** Security Analyst | SOC Analyst | Security Engineer  | Security Solutions Architect
 
 ## Skills Demonstrated
 
@@ -18,6 +17,8 @@ Cybersecurity professional with 5+ years of experience in Security Operations, I
 - Security architecture design
 - Detection engineering
 - Incident response
+- Security architecture design
+- Infrastructure security solutions
 
 
 ## Lab Projects
