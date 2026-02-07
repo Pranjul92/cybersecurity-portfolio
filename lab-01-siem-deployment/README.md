@@ -32,12 +32,12 @@ PowerShell Logs ─────┘     Forwarder           (9997)      Enterpris
 
 VM 1: Ubuntu SIEM Server
 **Specification**      **Configuration** 
-OS                 Ubuntu Server 22.04.5 LTS
-Hostname           siem-server
-IP Address         172.16.240.131/24 (DHCP)
-RAM                8 GB
-CPU                4 cores
-Disk               100 GB (LVM)
-Network            NAT (Share with Mac)
-FirmwareLegacy     BIOS
+OS                     Ubuntu Server 22.04.5 LTS
+Hostname               siem-server
+IP Address             172.16.240.131/24 (DHCP)
+RAM                    8 GB
+CPU                    4 cores
+Disk                   100 GB (LVM)
+Network                NAT (Share with Mac)
+FirmwareLegacy         BIOS
 
