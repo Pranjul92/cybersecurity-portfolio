@@ -81,27 +81,33 @@ Windows 11 Setup:
 -  Configured DHCP networking
 - Disabled Windows Firewall (lab environment only)
 
-Phase 2: SIEM Installation (Ubuntu)
+Phase 2: SIEM Installation (Ubuntu) - Splunk Enterprise Deployment:
 
-Splunk Enterprise Deployment:
-# Download Splunk Enterprise 9.2.0
+1. Download Splunk Enterprise 9.2.0
 wget -O splunk-9.2.0-1fff88043d5f-linux-2.6-amd64.deb \
   'https://download.splunk.com/products/splunk/releases/9.2.0/linux/splunk-9.2.0-1fff88043d5f-linux-2.6-amd64.deb'
 
-# Install package
+2. Install package
 sudo dpkg -i splunk-9.2.0-1fff88043d5f-linux-2.6-amd64.deb
 
-# Start Splunk and accept license
+3. Start Splunk and accept license
 sudo /opt/splunk/bin/splunk start --accept-license
 
-# Enable boot-start
+4. Enable boot-start
 sudo /opt/splunk/bin/splunk enable boot-start
 
-# Enable receiving on port 9997
+5. Enable receiving on port 9997
 sudo /opt/splunk/bin/splunk enable listen 9997 -auth admin:password
 
-# Create custom indexes
+6. Create custom indexes
 sudo /opt/splunk/bin/splunk add index windows_security -auth admin:password
 sudo /opt/splunk/bin/splunk add index windows_system -auth admin:password
 sudo /opt/splunk/bin/splunk add index sysmon -auth admin:password
 sudo /opt/splunk/bin/splunk add index powershell -auth admin:password
+
+Configuration Changes:
+- Disabled receiver authentication for lab environment
+- Expanded disk from 10GB to 100GB using LVM
+- Created persistent DHCP network configuration
+
+
