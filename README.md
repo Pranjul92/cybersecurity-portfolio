@@ -23,7 +23,7 @@ Cybersecurity professional with 5+ years of experience spanning security operati
 
 ## Lab Projects
 
-### Lab 1: Enterprise SIEM Deployment ✅ Complete
+### Lab 1: Enterprise SIEM Deployment
 **Focus:** Log management, SIEM architecture, security monitoring
 
 Built a production-grade SIEM environment with centralized log collection from Windows endpoints. Demonstrates Splunk administration, log forwarding configuration, and comprehensive security instrumentation.
