@@ -5,28 +5,27 @@ Deploy a functional Security Information and Event Management (SIEM) system to c
 
 ## Network Topology
 
-┌─────────────────────────────────────────────────────────┐
-│              VMware NAT Network (172.16.240.0/24)        │
-│                                                          │
-│  ┌──────────────────────┐        ┌────────────────────┐ │
-│  │  Ubuntu SIEM Server  │◄───────│  Windows Endpoint  │ │
-│  │  172.16.240.131      │  9997  │  172.16.240.130    │ │
-│  │                      │        │                    │ │
-│  │  Splunk Enterprise   │        │  - Sysmon          │ │
-│  │  - Port 8000 (Web)   │        │  - Audit Policies  │ │
-│  │  - Port 9997 (Recv)  │        │  - PS Logging      │ │
-│  │  - 4 Custom Indexes  │        │  - UF Forwarder    │ │
-│  └──────────────────────┘        └────────────────────┘ │
-│                                                          │
-│  Gateway: 172.16.240.2                                   │
-│  DNS: 172.16.240.2 (VMware)                             │
-└─────────────────────────────────────────────────────────┘
+**Environment:** VMware Fusion NAT Network (172.16.240.0/24)
+
+**Components:**
+- **Ubuntu SIEM Server:** 172.16.240.131
+  - Splunk Enterprise 9.2.0
+  - Web Interface: Port 8000
+  - Receiving Port: 9997
+  - Custom Indexes: windows_security, windows_system, sysmon, powershell
+
+- **Windows Endpoint:** 172.16.240.130
+  - Windows 11 Pro
+  - Sysmon 15.15
+  - Full audit policies enabled
+  - PowerShell logging configured
+  - Splunk Universal Forwarder
+
+**Network:** VMware NAT, Gateway: 172.16.240.2, DNS: 172.16.240.2
 
 ## Data Flow
 
-Windows Event Logs ──┐
-Sysmon Telemetry ────┼──► Splunk Universal ──► Network ──► Splunk ──► Indexes ──► Web UI
-PowerShell Logs ─────┘     Forwarder           (9997)      Enterprise               (8000)
+Windows logs → Universal Forwarder → TCP Port 9997 → Splunk Indexer → Indexes → Web UI (Port 8000)
 
 ## Infrastructure Components 
 
