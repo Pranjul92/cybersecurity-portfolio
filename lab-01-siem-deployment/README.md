@@ -122,7 +122,7 @@ Install with config
 .\Sysmon64.exe -accepteula -i sysmonconfig.xml
 
 2. Windows Audit Policies: (Can also be done through GUI)
-   # Enable comprehensive auditing
+
 auditpol /set /category:"Account Logon" /success:enable /failure:enable
 auditpol /set /category:"Account Management" /success:enable /failure:enable
 auditpol /set /category:"Detailed Tracking" /success:enable /failure:enable
@@ -132,7 +132,7 @@ auditpol /set /category:"Policy Change" /success:enable /failure:enable
 auditpol /set /category:"Privilege Use" /success:enable /failure:enable
 auditpol /set /category:"System" /success:enable /failure:enable
 
-3. PowerShell Logging (via Group Policy):
+4. PowerShell Logging (via Group Policy):
 
 Enabled Module Logging (all modules: *)
 Enabled Script Block Logging
