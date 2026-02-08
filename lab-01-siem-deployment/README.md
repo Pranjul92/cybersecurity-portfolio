@@ -111,3 +111,33 @@ Configuration Changes:
 - Created persistent DHCP network configuration
 
 
+Phase 3: Endpoint (Windows)
+
+1. Sysmon Installation:Download Sysmon and SwiftOnSecurity config
+Invoke-WebRequest -Uri "https://download.sysinternals.com/files/Sysmon.zip" -OutFile "Sysmon.zip"
+Expand-Archive Sysmon.zip
+Invoke-WebRequest -Uri "https://raw.githubusercontent.com/SwiftOnSecurity/sysmon-config/master/sysmonconfig-export.xml" -OutFile "sysmonconfig.xml"
+
+Install with config
+.\Sysmon64.exe -accepteula -i sysmonconfig.xml
+
+2. Windows Audit Policies: (Can also be done through 
+   # Enable comprehensive auditing
+auditpol /set /category:"Account Logon" /success:enable /failure:enable
+auditpol /set /category:"Account Management" /success:enable /failure:enable
+auditpol /set /category:"Detailed Tracking" /success:enable /failure:enable
+auditpol /set /category:"Logon/Logoff" /success:enable /failure:enable
+auditpol /set /category:"Object Access" /success:enable /failure:enable
+auditpol /set /category:"Policy Change" /success:enable /failure:enable
+auditpol /set /category:"Privilege Use" /success:enable /failure:enable
+auditpol /set /category:"System" /success:enable /failure:enable
+
+3. PowerShell Logging (via Group Policy):
+
+Enabled Module Logging (all modules: *)
+Enabled Script Block Logging
+Enabled PowerShell Transcription (output: C:\PSTranscripts)
+
+4. Splunk Universal Forwarder:
+Installation: Downloaded and installed Splunk Universal Forwarder 9.2.0 (Windows x64)
+inputs.conf:
