@@ -121,7 +121,7 @@ Invoke-WebRequest -Uri "https://raw.githubusercontent.com/SwiftOnSecurity/sysmon
 Install with config
 .\Sysmon64.exe -accepteula -i sysmonconfig.xml
 
-2. Windows Audit Policies: (Can also be done through 
+2. Windows Audit Policies: (Can also be done through GUI)
    # Enable comprehensive auditing
 auditpol /set /category:"Account Logon" /success:enable /failure:enable
 auditpol /set /category:"Account Management" /success:enable /failure:enable
@@ -140,4 +140,13 @@ Enabled PowerShell Transcription (output: C:\PSTranscripts)
 
 4. Splunk Universal Forwarder:
 Installation: Downloaded and installed Splunk Universal Forwarder 9.2.0 (Windows x64)
-inputs.conf:
+Created config files which can be seen in the /configs folder
+
+## Conclusion
+
+This lab successfully demonstrates the deployment and configuration of an enterprise-grade SIEM system with comprehensive security logging. The implementation shows proficiency in:
+- Security architecture and design
+- Multi-platform system administration (Linux/Windows)
+- Log management and analysis
+- Security instrumentation and monitoring
+
