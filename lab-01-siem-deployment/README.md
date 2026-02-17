@@ -141,6 +141,9 @@ Enabled PowerShell Transcription (output: C:\PSTranscripts)
 Installation: Downloaded and installed Splunk Universal Forwarder 9.2.0 (Windows x64)
 Created config files which can be seen in the /configs folder
 
+5. Splunk Add-on for Microsoft Windows
+To enable proper field parsing of Windows Event Logs and Sysmon telemetry, the Splunk Add-on for Microsoft Windows was installed.
+
 ## Conclusion
 
 This lab successfully demonstrates the deployment and configuration of an enterprise-grade SIEM system with comprehensive security logging. The implementation shows proficiency in:
