@@ -16,12 +16,12 @@ index=windows_security EventCode=4625
 
 ## Alert Configuration
 
-| **Schedule** | Every 5 minutes (`*/5 * * * *`) |
-| **Trigger** | Number of Results > 0 |
-| **Trigger Type** | Once |
-| **Throttle Field** | IpAddress |
-| **Throttle Duration** | 15 minutes |
-| **Severity** | High |
+| **Schedule** : Every 5 minutes (`*/5 * * * *`)
+| **Trigger** : Number of Results > 0
+| **Trigger Type** : Once
+| **Throttle Field** : IpAddress
+| **Throttle Duration** : 15 minutes
+| **Severity** : High
 
 ## Test Procedure
 
