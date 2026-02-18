@@ -14,12 +14,6 @@ index=powershell EventCode=4104
 | search ScriptBlockText="*-enc*" OR ScriptBlockText="*-encodedcommand*" 
 | table _time, User, ComputerName, ScriptBlockText
 
-**Why EventCode 4104?**  
-Event ID 4104 captures PowerShell Script Block logging, which records the actual commands and scripts executed on the system.
-
-**Detection Pattern:**  
-Searches for the presence of `-enc` or `-encodedcommand` parameters in the ScriptBlockText field, regardless of what command is encoded.
-
 ## Alert Configuration
 
 | **Schedule** : Every 5 minutes (`*/5 * * * *`)
@@ -34,7 +28,7 @@ PowerShell execution is user-based. If the same user runs multiple encoded comma
 
 ## Test Procedure
 
-### Step 1: Generate Encoded Command
+### Step 1: Generated an Encoded Command
 ```powershell
 # Create encoded string
 $encoded = [Convert]::ToBase64String([System.Text.Encoding]::Unicode.GetBytes("Get-Process"))
@@ -45,52 +39,27 @@ Write-Host "Encoded: $encoded"
 
 **Output:** `RwBlAHQALQBQAHIAbwBjAGUAcwBzAA==`
 
-### Step 2: Execute with Encoded Parameter
+### Step 2: Execute with Encoded Parameter 
+[Execution](./screenshots/cmd-execution.png)
+
 ```powershell
-# Copy the actual base64 string and run:
 powershell.exe -encodedcommand RwBlAHQALQBQAHIAbwBjAGUAcwBzAA==
 ```
 
-**Important:** Use the actual base64 string (not `$encoded` variable) 
-to ensure Splunk logs the full encoded command.
+## Decoding Encoded Commands during an Investigation
 
----
+When this alert fires in a real incident, decode the command to determine if it's malicious, using an online tool **CyberChef**
 
-## Decoding Encoded Commands (Investigation)
-
-When this alert fires in a real incident, decode the command to 
-determine if it's malicious:
-
-### Method 1: PowerShell
-```powershell
-# Copy the base64 string from Splunk logs
-$encoded = "RwBlAHQALQBQAHIAbwBjAGUAcwBzAA=="
-
-# Decode it
-$decoded = [System.Text.Encoding]::Unicode.GetString([Convert]::FromBase64String($encoded))
-Write-Host $decoded
-```
-
-**Output:** `Get-Process`
-
-### Method 2: CyberChef (Online Tool)
-
-1. Go to: https://gchq.github.io/CyberChef/
-2. Recipe: "From Base64" → "Decode Text (UTF-16LE)"
-3. Input: Base64 string from logs
-4. View decoded command
-
----
+[Output](./screenshots/decoded-cyberchef.png)
 
 ## Results
 
-- ✅ Encoded PowerShell execution captured in `powershell` index
-- ✅ Alert triggered when `-encodedcommand` parameter detected
-- ✅ Full base64 string visible in ScriptBlockText field
-- ✅ Throttling prevents alert spam for same user
-- ✅ Successfully decoded command for verification
+- Encoded PowerShell execution captured in `powershell` index
+- Alert triggered when `-encodedcommand` parameter detected
+- Full base64 string visible in ScriptBlockText field
+- Throttling prevents alert spam for same user
+- Successfully decoded command for verification
 
----
 
 ## Screenshots
 
@@ -99,17 +68,14 @@ Write-Host $decoded
 - [Search Results with Encoded Command](./screenshots/03-search-results.png)
 - [Raw Event Log](./screenshots/04-event-log.png)
 
----
 
 ## False Positive Considerations
 
 - Legitimate automation scripts that use encoding for special characters
 - Security tools that execute encoded diagnostics
-- **Tuning:** Whitelist known good users or scheduled tasks if needed
-- **Context matters:** Always decode and analyze the command before 
-  dismissing as benign
+- Tuning: Whitelist known good users or scheduled tasks if needed
+- Always decode and analyze the command before dismissing as benign
 
----
 
 ## Why This Detection Matters
 
@@ -119,5 +85,4 @@ Encoding is a common technique used by:
 - Ransomware deployment scripts
 - Living-off-the-land attacks
 
-Even if the encoded command seems harmless (like `Get-Process`), 
-the use of encoding itself is suspicious and warrants investigation.
+Even if the encoded command seems harmless (like `Get-Process`), the use of encoding itself is suspicious and warrants investigation.
