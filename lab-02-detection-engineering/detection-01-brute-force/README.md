@@ -38,6 +38,7 @@ Simulated brute force attack on Windows endpoint by generating 10+ failed logins
 - [Alert Details](./screenshots/01-alert-details.png)
 - [Alert Triggered](./screenshots/02-alert-triggered.png)
 - [Search Results](./screenshots/03-search-results.png)
+- [Event Logs](./screenshots/04-event-logs.png)
 
 ## False Positive Considerations
 - Legitimate users mistyping passwords repeatedly
