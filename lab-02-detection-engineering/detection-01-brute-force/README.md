@@ -25,12 +25,9 @@ index=windows_security EventCode=4625
 
 ## Test Procedure
 
-Simulated brute force attack on Windows endpoint:
+Simulated brute force attack on Windows endpoint by generating 10+ failed logins. 
 
-Generated 10 failed login attempts
-1..10 | ForEach-Object {
-    runas /user:fakeuser$_ cmd 2>$null
-}
+    runas /user:fakeuser
 
 ## Results
 
@@ -38,9 +35,9 @@ Generated 10 failed login attempts
 - Alert triggered after threshold exceeded
 
 ## Screenshots
-
-- [Alert Triggered](./screenshots/01-alert-triggered.png)
-- [Search Results](./screenshots/02-search-results.png)
+- [Alert Details](./screenshots/01-alert-details.png)
+- [Alert Triggered](./screenshots/02-alert-triggered.png)
+- [Search Results](./screenshots/03-search-results.png)
 
 ## False Positive Considerations
 - Legitimate users mistyping passwords repeatedly
