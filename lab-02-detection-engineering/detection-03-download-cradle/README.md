@@ -8,6 +8,8 @@ PowerShell commands that download files or content from the internet. This techn
 - **Technique** : Ingress Tool Transfer (T1105)
 - **Description** : Adversaries may transfer tools or files from external systems
 
+Invoke-WebRequest -Uri
+
 ## Detection Logic
 ```
 index=powershell EventCode=4104
@@ -43,7 +45,7 @@ This search looks for common PowerShell download methods:
 ## Test Procedure
 
 ```powershell
-# Downloads Google homepage (harmless test)
+# Downloads Google homepage
 Invoke-WebRequest -Uri "https://www.google.com" -OutFile "test.html"
 
 # Cleanup
@@ -52,8 +54,6 @@ Remove-Item test.html -ErrorAction SilentlyContinue
 
 **What gets logged:**  
 PowerShell Script Block (Event ID 4104) captures the full `Invoke-WebRequest` command with the URL and parameters.
-
-
 
 ## Attack Scenarios This Detects
 
