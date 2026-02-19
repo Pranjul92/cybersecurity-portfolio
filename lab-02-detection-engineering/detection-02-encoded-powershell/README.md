@@ -66,7 +66,7 @@ When this alert fires in a real incident, decode the command to determine if it'
 - [Alert Details](./screenshots/01-alert-details.png)
 - [Alert Triggered](./screenshots/02-alert-triggered.png)
 - [Search Results with Encoded Command](./screenshots/03-search-results.png)
-- [Raw Event Log](./screenshots/04-event-log.png)
+- [Event Log](./screenshots/04-event-log.png)
 
 
 ## False Positive Considerations
