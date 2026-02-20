@@ -1,4 +1,4 @@
-# Detection 05: Office Application Spawning Shell
+## Detection 05: Office Application Spawning Shell
 
 ## What This Detects
 
