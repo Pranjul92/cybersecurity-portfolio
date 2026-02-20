@@ -28,12 +28,11 @@ Legitimate Office documents do NOT spawn shells. When they do, it's almost alway
 | **Throttle Duration** : 15 minutes
 | **Severity** : High
 
-## Test Procedure
+## Test Procedure 
 
 1. Open Microsoft Word
 2. Press Alt+F11 (VBA editor)
-3. Insert → Module
-4. Paste:
+3. Run the [VBA Script](./screenshots/VBA-Script.png)
 ```vba
 Sub TestMacro()
     Shell "cmd.exe /c echo test > C:\Users\Public\test.txt"
@@ -68,5 +67,4 @@ CommandLine: cmd /c certutil -urlcache -f http://...
 
 - [Alert Triggered](./screenshots/01-alert-triggered.png)
 - [Alert Details](./screenshots/02-alert-details.png)
-- [Search Results](./screenshots/03-search-results.png)
-- [Event Log](./screenshots/04-event-log.png)
+- [Event Log](./screenshots/03-event-log.png)
