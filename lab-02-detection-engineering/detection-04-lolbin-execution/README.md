@@ -27,7 +27,7 @@ Event ID 1 captures process creation events with full command-line arguments, al
 
 ## Test Procedure
 
-### Safe Test Command ([Command Execution](./screenshots/Command_Execution))
+### Safe Test Command ([Command Execution](./screenshots/Command_Execution.png))
 ```powershell
 # Use certutil to encode a file (harmless operation)
 certutil -encode C:\Windows\System32\drivers\etc\hosts encoded.txt
@@ -123,10 +123,9 @@ ParentImage: C:\Users\Bob\AppData\Local\Temp\random.exe (Very suspicious)
 
 ## Screenshots
 
-- [Alert Details](./screenshots/01-alert-details.png)
-- [Alert Triggered](./screenshots/02-alert-triggered.png)
-- [Search Results with CommandLine](./screenshots/03-search-results.png)
-- [Raw Sysmon Event](./screenshots/04-event-log.png)
+- [Alert Triggered](./screenshots/01-alert-triggered.png)
+- [Alert Details](./screenshots/02-alert-details.png)
+- [Sysmon Event Logs](./screenshots/03-event-log.png)
 
 
 ## False Positive Considerations
