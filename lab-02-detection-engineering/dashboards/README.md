@@ -6,7 +6,7 @@ Overview of monitoring dashboards created for real-time security operations.
 
 **Purpose:** Executive-level view of security posture and alert activity.
 
-**Panels:** [Dashboard Report](./screenshots/soc_security_overview-2026-02-22.pdf)
+**Panels:** [Dashboard Report]
 1. **Alert Activity (Last 24 Hours)** - Line chart showing when alerts triggered
 2. **Events by Index** - Pie chart of log volume by source
 3. **Top Triggered Alerts** - Bar chart of most frequent detections
