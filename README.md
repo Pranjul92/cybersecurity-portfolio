@@ -28,13 +28,15 @@ Cybersecurity professional with 5+ years of experience spanning security operati
 
 Built a production-grade SIEM environment with centralized log collection from Windows endpoints. Demonstrates Splunk administration, log forwarding configuration, and comprehensive security instrumentation.
 
-**[View Lab 1 →](./lab-01-siem-deployment/)**
+**[View Lab 1](./lab-01-siem-deployment/)**
 
 **Key Technologies:** Splunk Enterprise, Sysmon, Windows Event Logging, Universal Forwarder
 
 
 ### Lab 2: Detection Engineering
 **Focus:** Threat detection, correlation rules, alerting
+
+**[View Lab 2](./lab-02-detection-engineering/)**
 
 
 ### Lab 3: Ransomware Incident Response
