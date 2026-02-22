@@ -13,7 +13,7 @@ Overview of monitoring dashboards created for real-time security operations.
 4. **Failed Login Attempts** - Table of authentication failures
 5. **Top Processes** - Most frequently executed processes
 
-![SOC Overview Dashboard](./screenshots/dashboard-01-soc-overview.png)
+[SOC Overview Dashboard](./screenshots/dashboard-01-soc-overview.png)
 
 ## Dashboard 2: Authentication Monitoring
 
@@ -27,9 +27,8 @@ Overview of monitoring dashboards created for real-time security operations.
 
 **Screenshot:**
 
-![Authentication Dashboard](./screenshots/dashboard-02-authentication.png)
+[Authentication Dashboard](./screenshots/dashboard-02-authentication.png)
 
----
 
 ## Dashboard 3: Threat Hunting Workspace
 
@@ -42,5 +41,5 @@ Overview of monitoring dashboards created for real-time security operations.
    
 **Screenshot:**
 
-![Threat Hunting Dashboard](./screenshots/dashboard-03-threat-hunting.png)
+[Threat Hunting Dashboard](./screenshots/dashboard-03-threat-hunting.png)
 
