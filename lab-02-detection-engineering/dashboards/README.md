@@ -2,7 +2,7 @@
 
 Overview of monitoring dashboards created for real-time security operations.
 
-## Dashboard 1: SOC Security Overview
+**Dashboard 1**: [SOC Overview Dashboard](./screenshots/dashboard-01-soc-overview.png)
 
 **Purpose:** Executive-level view of security posture and alert activity.
 
@@ -13,9 +13,7 @@ Overview of monitoring dashboards created for real-time security operations.
 4. **Failed Login Attempts** - Table of authentication failures
 5. **Top Processes** - Most frequently executed processes
 
-[SOC Overview Dashboard](./screenshots/dashboard-01-soc-overview.png)
-
-## Dashboard 2: Authentication Monitoring
+**Dashboard 2**: [Authentication Dashboard](./screenshots/dashboard-02-authentication.png)
 
 **Purpose:** Deep dive into authentication activity and account security.
 
@@ -25,12 +23,7 @@ Overview of monitoring dashboards created for real-time security operations.
 3. **Failed Login Attempts by Source IP** - IPs attempting authentication (brute force detection)
 4. **Recent Authentication Events** - Real-time feed of login activity and account changes
 
-**Screenshot:**
-
-[Authentication Dashboard](./screenshots/dashboard-02-authentication.png)
-
-
-## Dashboard 3: Threat Hunting Workspace
+**Dashboard 3**: [Threat Hunting Dashboard](./screenshots/dashboard-03-threat-hunting.png)
 
 **Purpose:** Interactive workspace for proactive threat hunting and investigation.
 
@@ -38,8 +31,3 @@ Overview of monitoring dashboards created for real-time security operations.
 1. **PowerShell Commands Executed** - Most common PowerShell commands by user
 2. **Process Creation Over Time** - Timeline of process execution patterns
 3. **Network Connections** - Outbound connections by process, IP, and port
-   
-**Screenshot:**
-
-[Threat Hunting Dashboard](./screenshots/dashboard-03-threat-hunting.png)
-
