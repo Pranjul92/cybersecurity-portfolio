@@ -1,20 +1,14 @@
-# Post Incident Review — IR-2026-001
+# Post Incident Review
 
 **Incident Type:** Ransomware  
 **Severity:** Critical  
 **Date:** 2026-02-24  
 **Affected Host:** WIN-ENDPOINT01  
-**Affected User:** WIN-ENDPOINT01\lab-s  
-**Incident Handler:** Pranjul Nayyar  
-**Framework:** NIST SP 800-61 Rev. 2  
-
----
+**Affected User:** WIN-ENDPOINT01\lab-s   
 
 ## Incident Summary
 
-On 2026-02-24, a simulated ransomware attack was executed against WIN-ENDPOINT01 via a phishing document (`Invoice_Q1_2026.docm`). Upon opening and enabling macros, a VBA script silently executed a multi-stage PowerShell payload that encrypted 200 user files, dropped a ransom note, and abused `certutil.exe` as a LOLBin. The attack was detected by Splunk at 14:05 HKT — 4 minutes after execution — with 7 of 8 configured detections firing successfully.
-
----
+On 2026-02-24, a simulated ransomware attack was executed against WIN-ENDPOINT01 via a phishing document (`Invoice_Q1_2026.docm`). Upon opening this doc and enabling macros, a VBA script silently executed a multi-stage PowerShell payload that encrypted 200 user files, dropped a ransom note, and abused `certutil.exe` as a LOLBin. The attack was detected by Splunk at 14:05, 4 minutes after execution, triggering 7 alerts. 
 
 ## Phase 1 — Preparation
 
@@ -25,20 +19,14 @@ Pre-incident baselines were captured on WIN-ENDPOINT01 before the simulation:
 - Local user accounts → `C:\IR\baseline_users.csv`
 - Active network connections → `C:\IR\baseline_connection.csv`
 
-Eight detection rules were configured in Splunk across Labs 2 and 3, covering macro execution, encoded PowerShell, download cradles, LOLBin abuse, admin account creation, mass file modification, ransom note creation, and bulk encryption.
-
-**Preparation Finding:** The default SwiftOnSecurity Sysmon config did not monitor `.encrypted` file creation events. Custom `FileCreate` rules were added before the simulation, confirming that generic telemetry configurations require active tuning to cover scenario-specific threat indicators.
-
----
+Detection rules were configured in Splunk to detect the execution. 
 
 ## Phase 2 — Detection & Analysis
 
 ### Alerts Triggered
 
-7 of 8 configured detections fired at 14:05:00 HKT.
+7 configured detections fired at 14:05:00 HKT.
 
-| Alert | Severity | Result |
-|---|---|---|
 | PowerShell Encoded Command Execution | Critical | ✅ Fired |
 | PowerShell Download Cradle Detected | High | ✅ Fired |
 | Living-off-the-Land Binary Execution | Medium | ✅ Fired |
@@ -127,73 +115,39 @@ A 4-minute gap existed between attack execution and the first alert. Two compoun
 | `RansomAdmin` | Attempted persistence account |
 | `WINWORD.EXE → powershell.exe` | Key behavioral indicator |
 
----
-
 ## Phase 3 — Containment, Eradication & Recovery
 
 ### Containment
 
 Endpoint isolated from network to prevent lateral movement. Forensic evidence captured before remediation — processes, connections, users, and scheduled tasks exported and compared against pre-incident baselines. Affected user account (`lab-s`) temporarily disabled. Encryption confirmed limited to `C:\UserData` (200 files) with no spread to network shares.
 
-**Time to Containment:** 55 minutes
 
 ### Eradication
 
 All malicious artifacts removed: macro-enabled document, ransom notes, 200 encrypted files. Persistence mechanisms checked — no additional footholds found beyond the failed `RansomAdmin` account (deleted). Office macros disabled via Group Policy. Windows Defender signatures updated and quick scan completed.
 
-**Time to Eradication:** 90 minutes
 
 ### Recovery
 
 User files restored from last known-good backup. User account re-enabled with mandatory password reset. Network connectivity restored. Enhanced Splunk monitoring queries configured for 7-day post-recovery watch period.
 
-**Time to Recovery:** 2.5 hours
-
----
-
 ## Phase 4 — Post-Incident Activity
 
-### IR Metrics
-
-| Metric | Actual | Target | Status |
-|---|---|---|---|
-| Time to Detection | 4 minutes | < 10 minutes | ✅ |
-| Time to Containment | 55 minutes | < 1 hour | ✅ |
-| Time to Eradication | 90 minutes | < 4 hours | ✅ |
-| Time to Recovery | 2.5 hours | < 8 hours | ✅ |
-| Detections Fired | 7 of 8 | 8 of 8 | ⚠️ |
-| False Positive Rate | 0% | < 5% | ✅ |
-
-### What Went Well
-
-- All 7 expected detections fired within 4 minutes — well within target
-- WINWORD.EXE → powershell.exe parent-child chain confirmed — attack origin established immediately
-- Full kill chain reconstructed in minutes using a single SPL forensic query
-- Zero false positives during the simulation window
-
-### What Could Be Improved
-
-- **Sysmon gap** — default config excluded `.encrypted` monitoring; required manual tuning before detections would fire
-- **4-minute detection lag** — attack completed entirely before first alert; real-time alerting or EDR would close this window
-- **No prevention controls** — macros enabled, no ASR rules, no email gateway; the attack succeeded because prevention was absent, not because detection failed
+Documentation of the findinds in the PIR. 
 
 ### Recommendations
 
-| Priority | Recommendation |
-|---|---|
-| 🔴 Immediate | Disable Office macros via Group Policy |
-| 🔴 Immediate | Implement real-time alerting for Critical severity detections |
-| 🟠 Short-term | Deploy email security gateway to strip macro-enabled attachments |
-| 🟠 Short-term | Enable Windows Defender ASR rules — block Office from spawning child processes |
-| 🟠 Short-term | Security awareness training — phishing and macro risks |
-| 🟡 Long-term | Deploy EDR for real-time behavioral detection and automated response |
-| 🟡 Long-term | Implement immutable backup solution isolated from production network |
-| 🟡 Long-term | Quarterly ransomware tabletop exercises |
+- Disable Office macros via Group Policy
+- Implement real-time alerting for Critical severity detections
+- Deploy email security gateway to strip macro-enabled attachments
+- Enable Windows Defender ASR rules — block Office from spawning child processes
+- Security awareness training — phishing and macro risks
+- Deploy EDR for real-time behavioral detection and automated response
+- Implement immutable backup solution isolated from production network
+- Quarterly ransomware tabletop exercises
 
 ### MITRE ATT&CK Coverage
 
-| Technique | Description | Detected |
-|---|---|---|
 | T1566.001 | Phishing: Spearphishing Attachment | ✅ |
 | T1059.001 | PowerShell Execution | ✅ |
 | T1027 | Obfuscated Files or Information | ✅ |
@@ -203,18 +157,3 @@ User files restored from last known-good backup. User account re-enabled with ma
 | T1140 | LOLBin — certutil | ✅ |
 | T1070 | Indicator Removal — self-deletion | ❌ Detection gap |
 | T1490 | Inhibit System Recovery | ❌ Not simulated |
-
-**Detection Coverage: 6 of 9 applicable techniques (67%)**
-
----
-
-## Conclusion
-
-This simulation successfully demonstrated end-to-end incident response capability — all IR phases completed within target thresholds and the full attack kill chain was reconstructed from Splunk telemetry. The most significant outcome is the identification of concrete prevention gaps. The attack succeeded not because detection failed, but because it was never prevented. Detection is not a substitute for prevention.
-
-The failed privilege escalation, rather than being a shortcoming, reflects realistic ransomware behavior — operators proceed with encryption under the current user context when escalation fails. User-level access is sufficient to cause a major incident.
-
----
-
-**Incident:** IR-2026-001 | **Host:** WIN-ENDPOINT01 | **Date:** 2026-02-24  
-**Lab Series:** Lab 3 of 6 — Cybersecurity Portfolio
