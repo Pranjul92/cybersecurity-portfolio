@@ -14,6 +14,6 @@ Encrypted Files          200 files encrypted in C:\UserData
 Ransom Note Contents     Ransom note dropped on Desktop
 Attack Timeline          Full kill chain reconstructed via Splunk SPL
 
-Documentation
+## Documentation
 [Post Incident Review PIR](./screenshots/PIR)
 Full NIST-framework incident analysis covering detection findings, attack timeline, IOCs, containment, eradication, recovery, and recommendations.
