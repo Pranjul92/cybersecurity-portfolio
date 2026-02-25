@@ -26,6 +26,7 @@ Stage 8: Anti-Forensics        → Payload self-deletes from %TEMP%
 | **Target Directory** : C:\UserData (200 files across 5 subdirectories)
 
 ## Attack Timeline
+```
 | 14:01:00 | Initial Access | User opened .docm, macros enabled | T1566.001 |
 | 14:01:05 | Execution | WINWORD.EXE → powershell.exe | T1059.001 |
 | 14:01:10 | Encoded PS | Obfuscated command + download cradle | T1027, T1105 |
@@ -35,6 +36,7 @@ Stage 8: Anti-Forensics        → Payload self-deletes from %TEMP%
 | 14:03:10 | LOLBin | certutil.exe -encode | T1140 |
 | 14:03:15 | Cleanup | Payload self-deleted | T1070 |
 | 14:05:00 | Detection | 7 Splunk alerts fired | — |
+```
 
 ## Detections
 - PowerShell Encoded Command Execution
