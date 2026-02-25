@@ -5,7 +5,7 @@ Simulated a realistic multi-stage ransomware attack via a malicious Word macro a
 ## Attack at a Glance
 Word Macro → PowerShell (hidden) → File Encryption (200 files) → Ransom Note → certutil LOLBin → Self-Delete
 
-Key Evidence
+## Key Evidence
 Screenshot               Description
 Office Spawning Shell    WINWORD.EXE → powershell.exe confirmed via Sysmon
 Mass Encryption          Bulk .encrypted file creation detected
