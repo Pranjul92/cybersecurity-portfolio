@@ -42,6 +42,8 @@ Built a production-grade SIEM environment with centralized log collection from W
 ### Lab 3: Ransomware Incident Response
 **Focus:** Incident response, containment, forensics
 
+**[View Lab 3](./lab-03-incident-response-ransomware/)**
+
 
 ### Lab 4: Threat Hunting Workshop
 **Focus:** Proactive hunting, IOCs, behavioral analysis
