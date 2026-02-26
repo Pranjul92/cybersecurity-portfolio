@@ -12,14 +12,11 @@ Cybersecurity professional with 5+ years of experience spanning security operati
 
 - SIEM deployment and administration (Splunk)
 - Security monitoring and log analysis
-- Endpoint security instrumentation
-- Windows and Linux system administration
+- Endpoint security
 - Security architecture design
-- Detection engineering
+- Alert Craetion and Detection
 - Incident response
-- Security architecture design
 - Infrastructure security solutions
-
 
 ## Lab Projects
 
@@ -43,11 +40,6 @@ Built a production-grade SIEM environment with centralized log collection from W
 **Focus:** Incident response, containment, forensics
 
 **[View Lab 3](./lab-03-incident-response-ransomware/)**
-
-
-### Lab 4: Threat Hunting Workshop
-**Focus:** Proactive hunting, IOCs, behavioral analysis
-
 
 ## Contact
 
