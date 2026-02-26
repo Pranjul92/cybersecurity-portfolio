@@ -29,11 +29,10 @@ Built a production-grade SIEM environment with centralized log collection from W
 
 **Key Technologies:** Splunk Enterprise, Sysmon, Windows Event Logging, Universal Forwarder
 
-
 ### Lab 2: Threat-detection
 **Focus:** Threat detection, correlation rules, alerting
 
-**[View Lab 2](./lab-02-detection-engineering/)**
+**[View Lab 2](./lab-02-Threat-detection/)**
 
 
 ### Lab 3: Ransomware Incident Response
