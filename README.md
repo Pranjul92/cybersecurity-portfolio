@@ -6,7 +6,7 @@
 
 Cybersecurity professional with 5+ years of experience spanning security operations, incident response, and security architecture. Skilled in designing and implementing enterprise security solutions, SIEM deployments, and security monitoring infrastructure.
 
-**Target Roles:** Security Analyst | SOC Analyst | Security Engineer  | Security Solutions Architect
+**Target Roles:** SOC Analyst | Security Engineer  | Security Solutions Architect
 
 ## Skills Demonstrated
 
