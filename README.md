@@ -32,7 +32,7 @@ Built a production-grade SIEM environment with centralized log collection from W
 ### Lab 2: Threat-detection
 **Focus:** Threat detection, correlation rules, alerting
 
-**[View Lab 2](./lab-02-Threat-detection/)**
+**[View Lab 2](./lab-02-Threat-Detection/)**
 
 
 ### Lab 3: Ransomware Incident Response
