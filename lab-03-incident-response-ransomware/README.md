@@ -61,6 +61,6 @@ Time to detection: 4 minutes.
 
 ## Documentation
 
-- [Post Incident Review — PIR-IR-2026-001](./incident-response/PIR-IR-2026-001.md)
+- [Post Incident Review — PIR-IR-2026-001](./incident-response/PIR.md)
 - [Attack Simulation — VBA Macro](./attack-simulation/simulate-ransomware.vba)
 
