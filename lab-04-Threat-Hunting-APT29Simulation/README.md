@@ -26,7 +26,7 @@ Stage 6: C2 Beaconing        → 5 beacons at ~30s intervals with jitter
 ### 1 — Persistence
 Attacker established persistence via registry Run keys or scheduled tasks | T1547.001, T1053.005 | Sysmon EventCode=13, Windows Security EventID=4698
 
-**[Registry Run key found](./screenshots/02-registry-persistence.png):**
+**[Registry Run key found](./screenshots/02-registry-persistence.png)**
 ```spl
 index=sysmon EventCode=13
 | search TargetObject="*CurrentVersion\\Run*"
@@ -36,9 +36,7 @@ index=sysmon EventCode=13
 ```
 **Finding:** `powershell.exe` wrote `WindowsUpdateHelper` to `HKCU\...\CurrentVersion\Run` — pointing to a hidden PowerShell payload in `C:\Windows\Temp\updater.ps1`
 
-
-
-**Scheduled task:**
+**[Scheduled task MicrosoftEdgeUpdateTaskMachine](./screenshots/03-scheduled-task.png)**
 ```spl
 index=windows_security EventCode=4698
 | table _time, User, TaskName, TaskContent
@@ -46,20 +44,17 @@ index=windows_security EventCode=4698
 ```
 **Finding:** `MicrosoftEdgeUpdateTaskMachine` created at 18:30 — hidden, logon trigger, PowerShell download cradle embedded in task XML
 
-[Scheduled task MicrosoftEdgeUpdateTaskMachine](./screenshots/03-scheduled-task.png)
 
 ### 2 — Defence Evasion
 Attacker evaded detection by clearing event logs or modifying file timestamps | T1070.001, T1070.006 | Windows Security EventID=1102, Sysmon EventCode=2
 
-**Event log clearing:**
+**[Security log cleared EventID 1102](./screenshots/04-log-cleared.png)**
 ```spl
 index=windows_security EventCode=1102
 ```
 **Finding:** Security event log cleared by `lab-s` at 18:30 — confirmed via EventID=1102
 
-[Security log cleared EventID 1102](./screenshots/04-log-cleared.png)
-
-**Timestomping:**
+**[Timestomping detected EventCode=2](./screenshots/05-timestomping.png)**
 ```spl
 index=sysmon EventCode=2
 | table _time, Image, TargetFilename, CreationUtcTime
@@ -67,10 +62,11 @@ index=sysmon EventCode=2
 ```
 **Finding:** `updater.ps1` in `C:\Windows\Temp` with `CreationUtcTime` backdated 180 days — `_time` shows today, `CreationUtcTime` shows ~September 2025
 
-[Timestomping detected EventCode=2](./screenshots/05-timestomping.png)
 
 ### 3 — Credential Access
 Attacker attempted LSASS credential access | T1003.001 | PowerShell EventID=4104
+
+[LSASS comsvcs string in PS logs](./screenshots/06-credential-access.png)
 
 ```spl
 index=powershell EventCode=4104
@@ -80,11 +76,10 @@ index=powershell EventCode=4104
 ```
 **Finding:** `comsvcs.dll MiniDump lsass.dmp full` command string captured in PowerShell Script Block Logging (EventID=4104) — even though the command was never executed. PS logging captures all strings that pass through the engine regardless of execution.
 
-[LSASS comsvcs string in PS logs](./screenshots/06-credential-access.png)
-
 ### 4 — Discovery
 Attacker conducted internal discovery using native Windows commands | T1033, T1082, T1016 | Sysmon EventCode=1
 
+[Discovery command cluster](./screenshots/07-discovery-cluster.png)
 ```spl
 index=sysmon EventCode=1
 | where match(Image, "(?i)(whoami|net\.exe|ipconfig|systeminfo|arp|netstat|tasklist|hostname)")
@@ -96,11 +91,10 @@ index=sysmon EventCode=1
 ```
 **Finding:** 8 recon binaries executed within a 10-minute window under `lab-s` — `whoami`, `systeminfo`, `net.exe`, `ipconfig`, `arp`, `netstat`, `tasklist`, `hostname`
 
-[Discovery command cluster](./screenshots/07-discovery-cluster.png)
-
-
 ### 5 — C2 Beaconing
 Attacker is beaconing to external C2 at regular intervals | T1071.001 | Sysmon EventCode=3
+
+[C2 beacon delta seconds](./screenshots/08-beacon-pattern.png)
 
 ```spl
 index=sysmon EventCode=3
@@ -113,8 +107,6 @@ index=sysmon EventCode=3
 | sort _time
 ```
 **Finding:** 5 PowerShell outbound connections with `delta_seconds` clustering at 30-40 seconds — regular interval with jitter confirming automated beaconing behaviour
-
-[C2 beacon delta seconds](./screenshots/08-beacon-pattern.png)
 
 
 ## MITRE ATT&CK Coverage
