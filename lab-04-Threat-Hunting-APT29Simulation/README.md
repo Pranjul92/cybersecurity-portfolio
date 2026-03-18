@@ -106,7 +106,7 @@ index=sysmon EventCode=1
 [Discovery command cluster](./screenshots/07-discovery-cluster.png)
 
 
-### H5 — C2 Beaconing ✅ Confirmed
+### 5 — C2 Beaconing
 
 ```spl
 index=sysmon EventCode=3
@@ -122,16 +122,6 @@ index=sysmon EventCode=3
 
 [C2 beacon delta seconds](./screenshots/08-beacon-pattern.png)
 
-
-## Detection Gaps Identified
-
-| Gap | Impact | Fix |
-|---|---|---|
-| `Register-ScheduledTask` bypasses Sysmon EventCode=1 | Scheduled task persistence not visible in process logs | Monitor Windows Security EventID=4698 alongside Sysmon |
-| Default Sysmon config excludes `.ps1` timestomping | PowerShell payload timestamp manipulation not logged | Add `.ps1` and `C:\Windows\Temp` to FileCreateTime include rules |
-| DNS resolution not captured in EventCode=3 | DestinationHostname blank — destination only visible as IP | Enable DNS logging or use Sysmon EventCode=22 (DNS query) |
-
----
 
 ## MITRE ATT&CK Coverage
 
