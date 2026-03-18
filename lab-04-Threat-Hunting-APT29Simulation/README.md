@@ -21,21 +21,10 @@ Stage 5: Lateral Movement    → SMB port 445 probed on 4 internal IPs
 Stage 6: C2 Beaconing        → 5 beacons at ~30s intervals with jitter
 ```
 
-## Hunting Hypotheses
-
-[Baseline — Normal process creation](./screenshots/01-baseline-processes.png)
-
-| # | Hypothesis | MITRE | Data Source |
-| 1 | Attacker established persistence via registry Run keys or scheduled tasks | T1547.001, T1053.005 | Sysmon EventCode=13, Windows Security EventID=4698 |
-| 2 | Attacker evaded detection by clearing event logs or modifying file timestamps | T1070.001, T1070.006 | Windows Security EventID=1102, Sysmon EventCode=2 |
-| 3 | Attacker attempted LSASS credential access | T1003.001 | PowerShell EventID=4104 |
-| 4 | Attacker conducted internal discovery using native Windows commands | T1033, T1082, T1016 | Sysmon EventCode=1 |
-| 5 | Attacker is beaconing to external C2 at regular intervals | T1071.001 | Sysmon EventCode=3 |
-
-
-## Hunt Results
+## Hunting Hypotheses & Results 
 
 ### 1 — Persistence
+Attacker established persistence via registry Run keys or scheduled tasks | T1547.001, T1053.005 | Sysmon EventCode=13, Windows Security EventID=4698
 
 **Registry Run key:**
 ```spl
@@ -59,6 +48,7 @@ index=windows_security EventCode=4698
 [Scheduled task MicrosoftEdgeUpdateTaskMachine](./screenshots/03-scheduled-task.png)
 
 ### 2 — Defence Evasion
+Attacker evaded detection by clearing event logs or modifying file timestamps | T1070.001, T1070.006 | Windows Security EventID=1102, Sysmon EventCode=2
 
 **Event log clearing:**
 ```spl
@@ -79,6 +69,7 @@ index=sysmon EventCode=2
 [Timestomping detected EventCode=2](./screenshots/05-timestomping.png)
 
 ### 3 — Credential Access
+Attacker attempted LSASS credential access | T1003.001 | PowerShell EventID=4104
 
 ```spl
 index=powershell EventCode=4104
@@ -91,6 +82,7 @@ index=powershell EventCode=4104
 [LSASS comsvcs string in PS logs](./screenshots/06-credential-access.png)
 
 ### 4 — Discovery
+Attacker conducted internal discovery using native Windows commands | T1033, T1082, T1016 | Sysmon EventCode=1
 
 ```spl
 index=sysmon EventCode=1
@@ -107,6 +99,7 @@ index=sysmon EventCode=1
 
 
 ### 5 — C2 Beaconing
+Attacker is beaconing to external C2 at regular intervals | T1071.001 | Sysmon EventCode=3
 
 ```spl
 index=sysmon EventCode=3
@@ -127,15 +120,15 @@ index=sysmon EventCode=3
 
 | Technique | Name | Detected |
 |---|---|---|
-| T1547.001 | Registry Run Keys | ✅ |
-| T1053.005 | Scheduled Task | ✅ |
-| T1070.001 | Clear Windows Event Logs | ✅ |
-| T1070.006 | Timestomping | ✅ |
-| T1003.001 | LSASS Memory | ✅ Partial |
-| T1033 | System Owner/User Discovery | ✅ |
-| T1082 | System Information Discovery | ✅ |
-| T1016 | Network Configuration Discovery | ✅ |
-| T1021.002 | SMB Lateral Movement | ✅ |
-| T1071.001 | C2 Web Protocols | ✅ |
+| T1547.001 | Registry Run Keys |
+| T1053.005 | Scheduled Task |
+| T1070.001 | Clear Windows Event Logs |
+| T1070.006 | Timestomping |
+| T1003.001 | LSASS Memory |
+| T1033 | System Owner/User Discovery |
+| T1082 | System Information Discovery |
+| T1016 | Network Configuration Discovery |
+| T1021.002 | SMB Lateral Movement |
+| T1071.001 | C2 Web Protocols |
 
 **10 techniques across 6 MITRE tactics detected.**
