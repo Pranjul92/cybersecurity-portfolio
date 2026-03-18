@@ -35,6 +35,7 @@ index=sysmon EventCode=13
 | sort _time
 ```
 **Finding:** `powershell.exe` wrote `WindowsUpdateHelper` to `HKCU\...\CurrentVersion\Run` — pointing to a hidden PowerShell payload in `C:\Windows\Temp\updater.ps1`
+
 [Registry Run key found](./screenshots/02-registry-persistence.png)
 
 **Scheduled task:**
