@@ -26,7 +26,7 @@ Stage 6: C2 Beaconing        → 5 beacons at ~30s intervals with jitter
 ### 1 — Persistence
 Attacker established persistence via registry Run keys or scheduled tasks | T1547.001, T1053.005 | Sysmon EventCode=13, Windows Security EventID=4698
 
-**Registry Run key:**
+**[Registry Run key found](./screenshots/02-registry-persistence.png):**
 ```spl
 index=sysmon EventCode=13
 | search TargetObject="*CurrentVersion\\Run*"
@@ -36,7 +36,7 @@ index=sysmon EventCode=13
 ```
 **Finding:** `powershell.exe` wrote `WindowsUpdateHelper` to `HKCU\...\CurrentVersion\Run` — pointing to a hidden PowerShell payload in `C:\Windows\Temp\updater.ps1`
 
-[Registry Run key found](./screenshots/02-registry-persistence.png)
+
 
 **Scheduled task:**
 ```spl
