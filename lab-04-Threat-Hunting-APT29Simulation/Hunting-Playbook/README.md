@@ -3,6 +3,7 @@ Documentation of all 5 hunts — hypotheses, SPL queries, findings, and evidence
 ## Baseline — Pre-Hunt
 
 Before running the simulation, baselines were captured to establish what normal looks like on WIN-ENDPOINT01.
+
 [Baseline:Process Creation](./screenshots/Baseline_Normal-process-creation.png)
 [Baseline:Network Connections](./screenshots/Baseline_Normal-network-connections.png) 
 [Baseline:Scheduled Tasks](./screenshots/Baseline_Normal-Scheduled-tasks.png) 
