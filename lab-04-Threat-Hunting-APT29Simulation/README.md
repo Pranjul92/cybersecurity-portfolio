@@ -118,8 +118,8 @@ index=sysmon EventCode=3
 
 ## MITRE ATT&CK Coverage
 
-| Technique | Name | Detected |
-|---|---|---|
+| Technique | Name |
+|---|---|
 | T1547.001 | Registry Run Keys |
 | T1053.005 | Scheduled Task |
 | T1070.001 | Clear Windows Event Logs |
