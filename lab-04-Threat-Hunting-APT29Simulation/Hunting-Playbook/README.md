@@ -3,18 +3,17 @@ Documentation of all 5 hunts — hypotheses, SPL queries, findings, and evidence
 ## Baseline — Pre-Hunt
 
 Before running the simulation, baselines were captured to establish what normal looks like on WIN-ENDPOINT01.
-
-[Baseline:Process Creation](./screenshots/Baseline_Normal-process-creation.png)
-[Baseline:Network Connections](./screenshots/Baseline_Normal-network-connections.png) 
-[Baseline:Scheduled Tasks](./screenshots/Baseline_Normal-Scheduled-tasks.png) 
+- [Baseline:Process Creation](./screenshots/Baseline_Normal-process-creation.png)
+- [Baseline:Network Connections](./screenshots/Baseline_Normal-network-connections.png) 
+- [Baseline:Scheduled Tasks](./screenshots/Baseline_Normal-Scheduled-tasks.png) 
 
 ### Hunt 1 — Persistence
 An attacker may have established persistence via registry Run keys or scheduled tasks to survive reboots.
 
 #### MITRE ATT&CK Mapping
-Tactic — Persistence (TA0003)
-Technique — Boot or Logon Autostart: Registry Run Keys (T1547.001)
-Technique — Scheduled Task/Job (T1053.005)
+- Tactic — Persistence (TA0003)
+- Technique — Boot or Logon Autostart: Registry Run Keys (T1547.001)
+- Technique — Scheduled Task/Job (T1053.005)
 
 **[Registry Run key found](./screenshots/02-registry-persistence.png)**
 ```spl
@@ -39,9 +38,9 @@ index=windows_security EventCode=4698
 An attacker may be evading detection by clearing event logs or modifying file timestamps.
 
 #### MITRE ATT&CK Mapping
-Tactic — Defence Evasion (TA0005)
-Technique — Indicator Removal: Clear Windows Event Logs (T1070.001)
-Technique — Indicator Removal: Timestomp (T1070.006)
+- Tactic — Defence Evasion (TA0005)
+- Technique — Indicator Removal: Clear Windows Event Logs (T1070.001)
+- Technique — Indicator Removal: Timestomp (T1070.006)
 
 **[Security log cleared EventID 1102](./screenshots/04-log-cleared.png)**
 ```spl
@@ -62,8 +61,8 @@ index=sysmon EventCode=2
 An attacker may have attempted to access LSASS memory to steal credentials.
 
 #### MITRE ATT&CK Mapping
-Tactic — Credential Access (TA0006)
-Technique — OS Credential Dumping: LSASS Memory (T1003.001)
+- Tactic — Credential Access (TA0006)
+- Technique — OS Credential Dumping: LSASS Memory (T1003.001)
 
 [LSASS comsvcs string in PS logs](./screenshots/06-credential-access.png)
 
@@ -79,8 +78,8 @@ index=powershell EventCode=4104
 An attacker may be conducting internal reconnaissance using built-in Windows commands.
 
 #### MITRE ATT&CK Mapping
-Tactic — Discovery (TA0007)
-Technique — System Owner/User Discovery (T1033), System Information Discovery (T1082), Network Configuration Discovery (T1016)
+- Tactic — Discovery (TA0007)
+- Technique — System Owner/User Discovery (T1033), System Information Discovery (T1082), Network Configuration Discovery (T1016)
 
 [Discovery command cluster](./screenshots/07-discovery-cluster.png)
 ```spl
@@ -98,8 +97,8 @@ index=sysmon EventCode=1
 An attacker may be beaconing to an external C2 at regular intervals.
 
 #### MITRE ATT&CK Mapping
-Tactic — Command & Control (TA0011)
-Technique — Application Layer Protocol: Web Protocols (T1071.001)
+- Tactic — Command & Control (TA0011)
+- Technique — Application Layer Protocol: Web Protocols (T1071.001)
 
 [C2 beacon delta seconds](./screenshots/08-beacon-pattern.png)
 
