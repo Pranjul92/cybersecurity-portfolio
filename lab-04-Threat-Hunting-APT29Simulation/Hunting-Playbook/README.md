@@ -1,30 +1,19 @@
-## Objective
+Documentation of all 5 hunts — hypotheses, SPL queries, findings, and evidence screenshots.
 
-Simulate post-compromise APT29 (Cozy Bear) behaviour on WIN-ENDPOINT01 using PowerShell, then conduct hypothesis-based threat hunting in Splunk to identify the attacker's presence.
+## Baseline — Pre-Hunt
 
-## About APT29
+Before running the simulation, baselines were captured to establish what normal looks like on WIN-ENDPOINT01.
+[Baseline:Process Creation](./screenshots/Baseline_Normal-process-creation.png)
+[Baseline:Network Connections](./screenshots/Baseline_Normal-network-connections.png) 
+[Baseline:Scheduled Tasks](./screenshots/Baseline_Normal-Scheduled-tasks.png) 
 
-APT29 is a Russian SVR-linked threat actor — one of the most documented APT groups in the world. Their TTPs are heavily LOLBin-based, well-mapped to MITRE ATT&CK, and directly relevant to BFSI and government clients. All techniques simulated in this lab are based on publicly documented APT29 behaviour. 
+### Hunt 1 — Persistence
+An attacker may have established persistence via registry Run keys or scheduled tasks to survive reboots.
 
-## Attack Scenario
-
-**Assumption:** Initial access already occurred via phishing (covered in Lab 3). Lab 4 begins at the post-compromise phase. The attacker has a foothold on WIN-ENDPOINT01 as `lab-s` and is moving through the kill chain. 
-
-## Attack Simulation — 6 Stages
-
-```
-Stage 1: Persistence         → Registry Run key + Scheduled Task
-Stage 2: Defence Evasion     → Security log clearing + Timestomping
-Stage 3: Credential Access   → LSASS process identification + comsvcs MiniDump string
-Stage 4: Discovery           → 12-command recon burst (whoami, systeminfo, net, netstat etc.)
-Stage 5: Lateral Movement    → SMB port 445 probed on 4 internal IPs
-Stage 6: C2 Beaconing        → 5 beacons at ~30s intervals with jitter
-```
-
-## Hunting Hypotheses & Results 
-
-### 1 — Persistence
-Attacker established persistence via registry Run keys or scheduled tasks | T1547.001, T1053.005 | Sysmon EventCode=13, Windows Security EventID=4698
+#### MITRE ATT&CK Mapping
+Tactic — Persistence (TA0003)
+Technique — Boot or Logon Autostart: Registry Run Keys (T1547.001)
+Technique — Scheduled Task/Job (T1053.005)
 
 **[Registry Run key found](./screenshots/02-registry-persistence.png)**
 ```spl
@@ -45,8 +34,13 @@ index=windows_security EventCode=4698
 **Finding:** `MicrosoftEdgeUpdateTaskMachine` created at 18:30 — hidden, logon trigger, PowerShell download cradle embedded in task XML
 
 
-### 2 — Defence Evasion
-Attacker evaded detection by clearing event logs or modifying file timestamps | T1070.001, T1070.006 | Windows Security EventID=1102, Sysmon EventCode=2
+### Hunt 2 — Defence Evasion
+An attacker may be evading detection by clearing event logs or modifying file timestamps.
+
+#### MITRE ATT&CK Mapping
+Tactic — Defence Evasion (TA0005)
+Technique — Indicator Removal: Clear Windows Event Logs (T1070.001)
+Technique — Indicator Removal: Timestomp (T1070.006)
 
 **[Security log cleared EventID 1102](./screenshots/04-log-cleared.png)**
 ```spl
@@ -64,7 +58,11 @@ index=sysmon EventCode=2
 
 
 ### 3 — Credential Access
-Attacker attempted LSASS credential access | T1003.001 | PowerShell EventID=4104
+An attacker may have attempted to access LSASS memory to steal credentials.
+
+#### MITRE ATT&CK Mapping
+Tactic — Credential Access (TA0006)
+Technique — OS Credential Dumping: LSASS Memory (T1003.001)
 
 [LSASS comsvcs string in PS logs](./screenshots/06-credential-access.png)
 
@@ -77,7 +75,11 @@ index=powershell EventCode=4104
 **Finding:** `comsvcs.dll MiniDump lsass.dmp full` command string captured in PowerShell Script Block Logging (EventID=4104) — even though the command was never executed. PS logging captures all strings that pass through the engine regardless of execution.
 
 ### 4 — Discovery
-Attacker conducted internal discovery using native Windows commands | T1033, T1082, T1016 | Sysmon EventCode=1
+An attacker may be conducting internal reconnaissance using built-in Windows commands.
+
+#### MITRE ATT&CK Mapping
+Tactic — Discovery (TA0007)
+Technique — System Owner/User Discovery (T1033), System Information Discovery (T1082), Network Configuration Discovery (T1016)
 
 [Discovery command cluster](./screenshots/07-discovery-cluster.png)
 ```spl
@@ -92,7 +94,11 @@ index=sysmon EventCode=1
 **Finding:** 8 recon binaries executed within a 10-minute window under `lab-s` — `whoami`, `systeminfo`, `net.exe`, `ipconfig`, `arp`, `netstat`, `tasklist`, `hostname`
 
 ### 5 — C2 Beaconing
-Attacker is beaconing to external C2 at regular intervals | T1071.001 | Sysmon EventCode=3
+An attacker may be beaconing to an external C2 at regular intervals.
+
+#### MITRE ATT&CK Mapping
+Tactic — Command & Control (TA0011)
+Technique — Application Layer Protocol: Web Protocols (T1071.001)
 
 [C2 beacon delta seconds](./screenshots/08-beacon-pattern.png)
 
