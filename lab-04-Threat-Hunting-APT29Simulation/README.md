@@ -22,3 +22,5 @@ Stage 6: C2 Beaconing        → 5 beacons at ~30s intervals with jitter
 ```
 
 **10 techniques across 6 MITRE tactics detected.**
+
+[Threat Hunting Playbook with queries & findings](./Hunting-Playbook/README.md)
