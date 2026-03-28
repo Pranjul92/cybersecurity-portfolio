@@ -21,17 +21,16 @@ Cybersecurity professional with 5+ years of experience spanning security operati
 ## Lab Projects
 
 ### Lab 1: Enterprise SIEM Deployment
-**Focus:** Log management, SIEM architecture, security monitoring
-
-**Key Technologies:** Splunk Enterprise, Sysmon, Windows Event Logging, Universal Forwarder
+- **Focus:** Log management, SIEM architecture, security monitoring
+- **Key Technologies:** Splunk Enterprise, Sysmon, Windows Event Logging, Universal Forwarder
 
 Built a production-grade SIEM environment with centralized log collection from Windows endpoints. Demonstrates Splunk administration, log forwarding configuration, and comprehensive security instrumentation.
 
 **[View Lab 1](./lab-01-siem-deployment/)**
 
 ### Lab 2: Threat-detection
-**Focus:** Threat detection, correlation rules, alerting, MITRE ATT&CK mapping
-**Key Technologies:** Splunk Enterprise, Sysmon, Windows Event Logging, PowerShell, MITRE ATT&CK
+- **Focus:** Threat detection, correlation rules, alerting, MITRE ATT&CK mapping
+- **Key Technologies:** Splunk Enterprise, Sysmon, Windows Event Logging, PowerShell, MITRE ATT&CK
 
 Built 6 production-ready detection rules in Splunk including brute force login detection, encoded PowerShell, download cradles, LOLBin abuse, Office macro shell spawning, and local admin account creation. Implemented alert throttling to reduce noise, built 3 operational dashboards (SOC overview, authentication monitoring, threat hunting), and documented full detection logic and tuning procedures for each rule.
 
