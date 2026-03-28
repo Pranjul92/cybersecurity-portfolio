@@ -38,25 +38,24 @@ Built 6 production-ready detection rules in Splunk including brute force login d
 
 
 ### Lab 3: Ransomware Incident Response
-**Focus:** Incident response, containment, forensics, NIST Framework
-**Key Technologies:** Splunk Enterprise, Sysmon, PowerShell, VBA, NIST SP 800-61, Windows Event Logging
+- **Focus:** Incident response, containment, forensics, NIST Framework
+- **Key Technologies:** Splunk Enterprise, Sysmon, PowerShell, VBA, NIST SP 800-61, Windows Event Logging
 
 Simulated a full 8-stage ransomware kill chain using a VBA macro-enabled Word document delivering a PowerShell payload which encrypted 200 files, dropped a ransom note, and abused certutil as a LOLBin. Executed the complete NIST SP 800-61 IR lifecycle achieving detection and produced an executive Post Incident Review document.
 
 **[View Lab 3](./lab-03-incident-response-ransomware/)**
 
-
 ### Lab 4: Threat Hunting
-**Focus:** Threat hunting, APT simulation, behavioural detection, Splunk SPL
-**Key Technologies:** Splunk Enterprise, Sysmon, PowerShell, MITRE ATT&CK, Windows Event Logging
+- **Focus:** Threat hunting, APT simulation, behavioural detection, Splunk SPL
+- **Key Technologies:** Splunk Enterprise, Sysmon, PowerShell, MITRE ATT&CK, Windows Event Logging
 
 Simulated a full APT29 attack chain across 6 stages including registry persistence, scheduled task abuse, log clearing, LSASS credential access, lateral movement reconnaissance, and C2 beaconing. Conducted 5 hypothesis-driven hunts entirely in Splunk without relying on pre-fired alerts — confirming each TTP through behavioural analysis. Identified 3 detection gaps and mapped all findings to MITRE ATT&CK.
 
 **[View Lab 4](./lab-04-Threat-Hunting-APT29Simulation/)**
 
 ### Lab 5: Vulnerability Assessment
-**Focus:** Vulnerability assessment, exploit validation, remediation, Nessus, Metasploit
-**Key Technologies:** Nmap, Nessus Essentials, Metasploit Framework
+- **Focus:** Vulnerability assessment, exploit validation, remediation, Nessus, Metasploit
+- **Key Technologies:** Nmap, Nessus Essentials, Metasploit Framework
 
 Conducted a full vulnerability assessment against Metasploitable 2 and scoped the engagement, ran Nmap reconnaissance, performed a Nessus scan returning 166 findings, then validated 4 Critical CVEs through active exploitation using Metasploit achieving unauthenticated root access via each. Patched all 4 vulnerabilities, confirmed remediation via rescan, and produced a VA report.
 
