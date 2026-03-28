@@ -22,6 +22,7 @@ Cybersecurity professional with 5+ years of experience spanning security operati
 
 ### Lab 1: Enterprise SIEM Deployment
 **Focus:** Log management, SIEM architecture, security monitoring
+
 **Key Technologies:** Splunk Enterprise, Sysmon, Windows Event Logging, Universal Forwarder
 
 Built a production-grade SIEM environment with centralized log collection from Windows endpoints. Demonstrates Splunk administration, log forwarding configuration, and comprehensive security instrumentation.
@@ -39,6 +40,7 @@ Built 6 production-ready detection rules in Splunk including brute force login d
 
 ### Lab 3: Ransomware Incident Response
 **Focus:** Incident response, containment, forensics, NIST Framework
+**Key Technologies:** Splunk Enterprise, Sysmon, PowerShell, VBA, NIST SP 800-61, Windows Event Logging
 
 Simulated a full 8-stage ransomware kill chain using a VBA macro-enabled Word document delivering a PowerShell payload which encrypted 200 files, dropped a ransom note, and abused certutil as a LOLBin. Executed the complete NIST SP 800-61 IR lifecycle achieving detection and produced an executive Post Incident Review document.
 
